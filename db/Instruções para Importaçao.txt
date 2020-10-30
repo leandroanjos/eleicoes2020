@@ -1,0 +1,23 @@
+1) Criar o banco de dados para armazenar os dados da eleição:
+
+CREATE DATABASE eleicao;
+
+2) Importar o script da estrutura da tabela candidato:
+
+PSQL -U postgres -d eleicao < "C:\...\consulta_cand_2020_BRASIL.csv"
+
+3) Connectar no banco de dados criado:
+
+
+PSQL -U postgres -d eleicao
+
+
+4) Importar o arquivo CSV obtido do site do TSE (https://www.tse.jus.br/eleicoes/estatisticas/repositorio-de-dados-eleitorais-1/repositorio-de-dados-eleitorais)
+
+COPY candidato FROM 'C:\...\consulta_cand_2020_BRASIL.csv' DELIMITER ';' CSV HEADER;
+
+5) Exportar o DUMP da base de dados;
+
+pg_dump -U postgres eleicao > 'C:\...\consulta_cand_2020_BRASIL.sql'
+
+pg_dump -U postgres eleicao > 'D:\Projetos\Leandro\Eleicoes\consulta_cand_2020_BRASIL.sql'
